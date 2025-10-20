@@ -1,2 +1,4 @@
 *.mat
 Tests.m
+/btk
+*.c3d
