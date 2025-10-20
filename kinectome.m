@@ -1,5 +1,7 @@
-
-
+% Ce script utilise le cell array Acc fourni par mark_extraction pour créer
+% un kinectome de chaque essai pour chaque participant. Ces kinectomes
+% ainsi que les moyennes et écarts-types de chaque paire part/cond sont
+% stockés dans le cell array Kinect.
 
 %%
 clc
