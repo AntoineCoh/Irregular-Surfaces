@@ -4,3 +4,8 @@ Tests.m
 *.c3d
 *.asv
 *.txt
+*.pdf
+*.png
+*.jpeg
+*.docx
+*.xslx
