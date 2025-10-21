@@ -1,7 +1,8 @@
 % Ce script utilise le cell array Acc fourni par mark_extraction pour créer
 % un kinectome de chaque essai pour chaque participant. Ces kinectomes
 % ainsi que les moyennes et écarts-types de chaque paire part/cond sont
-% stockés dans le cell array Kinect.
+% stockés dans le cell array Kinect. Le 'weighted degree" de chaque node 
+% est calculé sur les kinectomes moyens et stockés dans le cell array WD.
 
 %%
 clc
@@ -10,6 +11,7 @@ clear
 load Acc.mat
 nbp=size(Acc,2);
 Kinect=cell(3,nbp);
+WD=cell(3,nbp);
 
 for p=1:nbp
     if isempty(Acc{1,p})
@@ -45,6 +47,13 @@ for p=1:nbp
         Kinect{c,p}{nbc+1,1}=mean(Kap,3);
         Kinect{c,p}{nbc+2,1}=std(Kap,0,3);
         clear Kap Kml
+        nbm=size(k_antpos,1);
+        weig_deg=[nbm,2];                                                   % weighted degree of nodes
+        for node=1:nbm
+            weig_deg(node,1)=sum(abs(Kinect{c,p}{end-1,1}(node,:)))-1;
+            weig_deg(node,2)=sum(abs(Kinect{c,p}{end-1,2}(node,:)))-1;
+        end
+        WD{c,p}=weig_deg;
     end
 end
 
