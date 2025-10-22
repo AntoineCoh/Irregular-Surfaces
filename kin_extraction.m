@@ -46,7 +46,7 @@ for p=2:nbp
                 else
                     HS=round(events.Right_Foot_Strike*100-start);
                 end
-                HS(HS<=0)=1;                                                % Au cas où HS1 est avant ou coïncide avec la première frame
+                HS(HS<=0)=1;                                                % Au cas où HS1 coïncide avec la première frame ou a une frame d'avance
                 nbc=length(HS)-1;                                           % Nombre de cycles entiers
                 for cy=1:nbc
                     ma=[];
