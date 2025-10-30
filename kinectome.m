@@ -58,3 +58,4 @@ for p=1:nbp
 end
 
 save Kinect.mat Kinect
+save WD.mat WD

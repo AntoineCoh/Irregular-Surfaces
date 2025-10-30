@@ -21,10 +21,14 @@ for p=1:nbp
         for j=1:2
             nbc=length(K_crp{c+(j-1)*3,p});
             for cy=1:nbc
-
                 for a=1:3
-                    PA=Phase_Angle((K_crp{c+(j-1)*3,p}{cy,1}(a,:))');
-                    PA_CRP{c+(j-1)*3,p}{cy,1}(a,:)=PA';
+                    ang=K_crp{c+(j-1)*3,p}{cy,1}(a,:);
+                    pad=round(0.1*length(ang));
+                    x=1:1:length(ang);
+                    xq=1-pad:1:length(ang)+pad;
+                    pad_ang=spline(x,ang,xq);
+                    PA=Phase_Angle(pad_ang');
+                    PA_CRP{c+(j-1)*3,p}{cy,1}(a,:)=(PA(pad+1:end-pad,1))';
                 end
                 PAtemp=PA_CRP{c+(j-1)*3,p}{cy,1};
                 PAn=interp1(linspace(1,size(PAtemp,2),size(PAtemp,2)),PAtemp',linspace(1,size(PAtemp,2),100));
